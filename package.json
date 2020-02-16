@@ -1,6 +1,6 @@
 {
   "name": "vuex-wrapper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Lindsay Wardell",
   "description": "Wrapper around Vuex to generate store values and a computed property as an interface",
   "main": "lib/index.js",
