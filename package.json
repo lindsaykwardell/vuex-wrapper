@@ -1,0 +1,35 @@
+{
+  "name": "vuex-wrapper",
+  "version": "0.1.0",
+  "author": "Lindsay Wardell",
+  "description": "Wrapper around Vuex to generate store values and a computed property as an interface",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "lint": "tslint ./src/index.ts",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "preversion": "npm run lint"
+  },
+  "keywords": [
+    "vuex",
+    "vue"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lindsaykwardell/vue-wrapper.git"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}
