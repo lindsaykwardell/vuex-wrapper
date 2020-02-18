@@ -3,19 +3,22 @@ const capFirstLetter = (name: string) =>
 
 type ObjectData = {
   initialValue: string;
-  computed: { [key: string]: any };
-  state: { [key: string]: any };
-  getters: { [key: string]: any };
-  actions: { [key: string]: any };
-  mutations: { [key: string]: any };
+  computed?: { [key: string]: any };
+  state?: { [key: string]: any };
+  getters?: { [key: string]: any };
+  actions?: { [key: string]: any };
+  mutations?: { [key: string]: any };
 };
 
 class Store {
-  private state = {};
-  private getters = {};
-  private actions = {};
-  private mutations = {};
-  private computed = {};
+  private state: { [key: string]: any } = {};
+  private getters: { [key: string]: any } = {};
+  private actions: { [key: string]: any } = {};
+  private mutations: { [key: string]: any } = {};
+  private computed: { [key: string]: any } = {};
+  private plugins: any[] = [];
+  private modules: { [key: string]: any } = {};
+  private strict: boolean = false;
 
   private defaultState = (name: string, initialValue: string) => ({
     [name]: initialValue
@@ -80,6 +83,26 @@ class Store {
     };
   };
 
+  public addStatic = (data: ObjectData) => {
+    this.state = { ...this.state, ...data?.state };
+    this.getters = { ...this.getters, ...data?.getters };
+    this.actions = { ...this.actions, ...data?.actions };
+    this.mutations = { ...this.mutations, ...data?.actions };
+    this.computed = { ...this.computed, ...data?.computed };
+  };
+
+  public addPlugin = (plugin: any) => {
+    this.plugins = [...this.plugins, plugin];
+  };
+
+  public addModules = (modules: any) => {
+    this.modules = { ...this.modules, ...modules };
+  };
+
+  public setString = (strict: boolean) => {
+    this.strict = strict;
+  };
+
   public exportMixin = () => ({
     computed: this.computed
   });
@@ -89,7 +112,10 @@ class Store {
       state: this.state,
       getters: this.getters,
       actions: this.actions,
-      mutations: this.mutations
+      mutations: this.mutations,
+      plugins: this.plugins,
+      modules: this.modules,
+      strict: this.strict
     };
   };
 }
