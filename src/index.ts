@@ -99,7 +99,7 @@ class Store {
     this.modules = { ...this.modules, ...modules };
   };
 
-  public setString = (strict: boolean) => {
+  public setStrict = (strict: boolean) => {
     this.strict = strict;
   };
 
